@@ -1,0 +1,2284 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>MenuQR — Project Presentation</title>
+
+<style>
+
+:root{
+  --navy:#14213d;
+  --blue:#2563eb;
+  --text:#172033;
+  --muted:#64748b;
+  --line:#e5eaf2;
+  --soft:#f6f8fc;
+  --blue-soft:#eef4ff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:#fff;
+}
+
+.deck{
+  width:100vw;
+  height:100vh;
+  position:relative;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  padding:7vh 8vw 8vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  opacity:0;
+  transform:translateX(40px);
+  pointer-events:none;
+  transition:.35s ease;
+  background:#fff;
+}
+
+.slide.active{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.top{
+  position:absolute;
+  top:25px;
+  left:8vw;
+  right:8vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size:10px;
+  font-weight:900;
+  color:var(--navy);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.counter{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:11px;
+  color:var(--blue);
+  font-weight:900;
+  margin-bottom:13px;
+}
+
+h1{
+  font-size:clamp(50px,7.5vw,88px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  color:var(--navy);
+  margin:0 0 16px;
+}
+
+h2{
+  font-size:clamp(32px,4.3vw,55px);
+  line-height:.97;
+  letter-spacing:-.055em;
+  color:var(--navy);
+  margin:0 0 24px;
+}
+
+p{
+  color:var(--muted);
+  line-height:1.55;
+  margin:0;
+}
+
+.accent{
+  color:var(--blue);
+}
+
+.subtitle{
+  font-size:clamp(17px,1.9vw,24px);
+  color:var(--muted);
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+.pill{
+  padding:8px 13px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  background:var(--soft);
+  font-size:11px;
+  font-weight:800;
+  color:var(--navy);
+}
+
+
+/* =====================================================
+   SLIDE 02 — TEAM
+===================================================== */
+
+.people{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+  align-items:stretch;
+}
+
+.person{
+  text-align:center;
+  padding:20px 17px 18px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 10px 28px #14213d0a;
+}
+
+.photo{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 13px;
+  border:5px solid #f0f4fa;
+  background:#eaf0f8;
+}
+
+.person strong{
+  display:block;
+  color:var(--navy);
+  font-size:14px;
+  line-height:1.35;
+}
+
+.person span{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.role{
+  display:inline-block;
+  margin-top:9px;
+  padding:5px 10px;
+  border-radius:99px;
+  background:var(--blue-soft);
+  color:var(--blue);
+  font-size:10px;
+  font-weight:900;
+  font-style:normal;
+}
+
+
+/* =====================================================
+   SLIDE 03 — PROBLEM
+===================================================== */
+
+.why{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
+}
+
+.box{
+  padding:27px;
+  border-radius:24px;
+  border:1px solid var(--line);
+}
+
+.box.dark{
+  background:var(--navy);
+  border-color:var(--navy);
+}
+
+.box.dark h3{
+  color:#fff;
+}
+
+.box.dark p{
+  color:#dbe6f8;
+}
+
+.box h3{
+  color:var(--navy);
+  font-size:24px;
+  margin:0 0 10px;
+}
+
+.box p{
+  font-size:13px;
+}
+
+
+/* =====================================================
+   SLIDE 04 — GOALS
+===================================================== */
+
+.goals{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.goal{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 8px 25px #14213d08;
+}
+
+.goal b{
+  display:block;
+  color:var(--navy);
+  margin:11px 0 6px;
+  font-size:14px;
+}
+
+.goal p{
+  font-size:12px;
+}
+
+.icon{
+  font-size:23px;
+  color:var(--blue);
+  font-weight:800;
+}
+
+
+/* =====================================================
+   SLIDE 05 — CUSTOMER & ADMIN FLOW
+===================================================== */
+
+.flowbox{
+  padding:17px 19px;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:var(--soft);
+  margin-bottom:11px;
+}
+
+.label{
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:10px;
+  color:var(--blue);
+  font-weight:900;
+  margin-bottom:9px;
+}
+
+.flow{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.node{
+  padding:9px 11px;
+  border:1px solid #dce3ee;
+  border-radius:11px;
+  background:#fff;
+  color:var(--navy);
+  font-size:10px;
+  font-weight:850;
+  text-align:center;
+}
+
+.arr{
+  color:var(--blue);
+  font-weight:900;
+  font-style:normal;
+}
+
+.admin-modules{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.admin-modules .node{
+  background:#fff;
+  color:var(--navy);
+}
+
+
+/* =====================================================
+   SLIDE 06 — SYSTEM FLOWCHART
+===================================================== */
+
+.chart{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:12px;
+  width:100%;
+  max-width:100%;
+}
+
+.chartbox{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:13px;
+  background:#fff;
+  min-width:0;
+}
+
+.chartbox h3{
+  color:var(--navy);
+  margin:0 0 8px;
+  font-size:13px;
+  line-height:1.2;
+}
+
+
+/* CUSTOMER FLOW */
+
+.vertical{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+}
+
+.vnode{
+  width:100%;
+  max-width:100%;
+  padding:6px 8px;
+  border:1px solid #dce3ee;
+  border-radius:8px;
+  background:#fff;
+  color:var(--navy);
+  font-size:8.5px;
+  line-height:1.2;
+  text-align:center;
+  font-weight:750;
+}
+
+.down{
+  color:var(--blue);
+  font-weight:900;
+  font-size:9px;
+  line-height:1;
+}
+
+.decision{
+  width:42px;
+  height:42px;
+  transform:rotate(45deg);
+  border:1px solid #ccd7e8;
+  background:#f7faff;
+  display:grid;
+  place-items:center;
+  margin:4px 0;
+}
+
+.decision span{
+  transform:rotate(-45deg);
+  font-size:7px;
+  font-weight:900;
+  color:var(--navy);
+}
+
+.branches{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  width:100%;
+}
+
+.branches div{
+  padding:6px;
+  border-radius:8px;
+  background:var(--soft);
+  font-size:7.5px;
+  line-height:1.2;
+  text-align:center;
+  font-weight:800;
+}
+
+
+/* ADMIN FLOW */
+
+.admin-flow{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.admin-node{
+  width:100%;
+  padding:6px 8px;
+  border:1px solid #dce3ee;
+  border-radius:8px;
+  background:#fff;
+  color:var(--navy);
+  font-size:8.5px;
+  line-height:1.2;
+  text-align:center;
+  font-weight:750;
+}
+
+.admin-node.primary{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+}
+
+.admin-status{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin:4px 0;
+}
+
+.admin-status div{
+  padding:6px;
+  border-radius:8px;
+  background:var(--soft);
+  color:var(--navy);
+  font-size:7.5px;
+  line-height:1.2;
+  font-weight:800;
+  text-align:center;
+}
+
+
+/* MULTI RESTAURANT */
+
+.multi-restaurant{
+  grid-column:1 / -1;
+}
+
+.restaurant-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  width:100%;
+}
+
+.restaurant-row .node{
+  width:100%;
+  padding:7px;
+  font-size:8.5px;
+  line-height:1.25;
+}
+
+.restaurant-row small{
+  font-size:7px;
+  color:var(--muted);
+}
+
+.isolation{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px solid var(--line);
+}
+
+.isolation-title{
+  color:var(--navy);
+  font-size:9px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+
+.isolation p{
+  font-size:8px;
+  line-height:1.35;
+}
+
+
+/* SLIDE 06 POSITION ONLY — flow unchanged */
+
+.slide:nth-child(6){
+  justify-content:flex-start;
+  padding-top:clamp(68px,7vh,82px);
+}
+
+.slide:nth-child(6) .eyebrow{
+  margin-bottom:10px;
+  line-height:1.1;
+}
+
+.slide:nth-child(6) h2{
+  font-size:clamp(27px,2.9vw,38px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin:0 0 20px;
+}
+
+
+/* =====================================================
+   SLIDE 07 — TECHNOLOGY STACK
+===================================================== */
+
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.tech-card{
+  min-height:105px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  background:#fff;
+  box-shadow:0 8px 24px #14213d08;
+}
+
+.tech-icon{
+  width:50px;
+  height:50px;
+  flex:0 0 50px;
+  border-radius:14px;
+  background:var(--blue-soft);
+  display:grid;
+  place-items:center;
+}
+
+.tech-icon img{
+  width:29px;
+  height:29px;
+  object-fit:contain;
+  display:block;
+}
+
+.tech-card h3{
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--blue);
+  font-size:9px;
+  margin:0 0 7px;
+}
+
+.tags{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  font-size:9.5px;
+  padding:5px 7px;
+  border-radius:7px;
+  background:var(--soft);
+  font-weight:800;
+  color:var(--navy);
+}
+
+
+/* =====================================================
+   SLIDE 08 — DEMO
+===================================================== */
+
+.demo-final{
+  align-items:center;
+  text-align:center;
+}
+
+.demo-final .eyebrow{
+  margin-bottom:12px;
+}
+
+.demo-final h2{
+  margin-bottom:24px;
+}
+
+.demo-card{
+  width:min(700px,100%);
+  min-height:245px;
+  border-radius:30px;
+  background:linear-gradient(145deg,#12213d,#203c6c);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  box-shadow:0 20px 55px rgba(18,33,61,.16);
+}
+
+.play{
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  border:0;
+  background:#fff;
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  margin:auto;
+  cursor:pointer;
+  font-size:25px;
+  box-shadow:0 13px 35px rgba(0,0,0,.2);
+  transition:.2s;
+}
+
+.play:hover{
+  transform:scale(1.06);
+}
+
+.demo-card h3{
+  color:#fff;
+  font-size:28px;
+  letter-spacing:.05em;
+  margin:16px 0 0;
+}
+
+.demo-card p{
+  color:#cbd8ec;
+  font-size:12px;
+  margin-top:7px;
+}
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+.controls{
+  position:fixed;
+  right:25px;
+  bottom:23px;
+  display:flex;
+  gap:7px;
+  align-items:center;
+  z-index:5;
+}
+
+.controls button{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:12px;
+  color:var(--navy);
+  font-size:17px;
+  cursor:pointer;
+}
+
+.dots{
+  display:flex;
+  gap:5px;
+  margin-right:5px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:9px;
+  background:#d8dfeb;
+}
+
+.dot.active{
+  width:20px;
+  background:var(--blue);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+  .tech-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:800px){
+
+  html,
+  body{
+    overflow:hidden;
+  }
+
+  .slide{
+    padding:76px 25px 82px;
+    overflow:auto;
+    justify-content:flex-start;
+  }
+
+  .top{
+    left:25px;
+    right:25px;
+  }
+
+  .people,
+  .why,
+  .chart,
+  .tech-grid{
+    grid-template-columns:1fr;
+  }
+
+  .multi-restaurant{
+    grid-column:auto;
+  }
+
+  .goals{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .restaurant-row{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:560px){
+
+  .goals{
+    grid-template-columns:1fr;
+  }
+
+  .people{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL SCREEN
+===================================================== */
+
+@media(max-height:700px) and (min-width:801px){
+
+  .slide{
+    padding-top:65px;
+    padding-bottom:65px;
+  }
+
+  .slide:nth-child(6){
+    justify-content:flex-start;
+  }
+
+  .slide:nth-child(6) h2{
+    font-size:32px;
+    margin-bottom:10px;
+  }
+
+  .chart{
+    gap:9px;
+  }
+
+  .chartbox{
+    padding:10px;
+  }
+
+  .vnode,
+  .admin-node{
+    padding:5px 7px;
+    font-size:8px;
+  }
+
+  .decision{
+    width:36px;
+    height:36px;
+  }
+
+  .branches div,
+  .admin-status div{
+    padding:5px;
+    font-size:7px;
+  }
+
+}
+
+
+/* =====================================================
+   PRINT / SCREENSHOT
+===================================================== */
+
+@media print{
+
+  html,
+  body{
+    overflow:visible;
+    height:auto;
+  }
+
+  .slide{
+    position:relative;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    min-height:100vh;
+    page-break-after:always;
+  }
+
+  .controls{
+    display:none;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="deck">
+
+
+<!-- =====================================================
+     SLIDE 01 — COVER
+===================================================== -->
+
+<section class="slide active">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      01 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Interactive Project Presentation
+  </div>
+
+
+  <h1>
+    Menu Digital<br>
+    <span class="accent">
+      QR Restaurant
+    </span>
+  </h1>
+
+
+  <div class="subtitle">
+    Digital Restaurant Ordering System
+  </div>
+
+
+  <div class="meta">
+
+    <span class="pill">
+      PT Naraya Telematika
+    </span>
+
+    <span class="pill">
+      SMKN 6 Malang · RPL
+    </span>
+
+    <span class="pill">
+      01 Juli 2026 — 30 April 2027
+    </span>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 02 — TEAM
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      02 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Team & Mentor
+  </div>
+
+
+  <h2>
+    People behind<br>
+    the <span class="accent">project.</span>
+  </h2>
+
+
+  <div class="people">
+
+
+    <div class="person">
+
+      <img
+        class="photo"
+        src="images/citra.jpg"
+        alt="Citra Yuriska"
+      >
+
+      <strong>
+        Citra Yuriska
+      </strong>
+
+      <span>
+        Project Team
+      </span>
+
+      <em class="role">
+        Team
+      </em>
+
+    </div>
+
+
+
+    <div class="person">
+
+      <img
+        class="photo"
+        src="images/irsyad.jpg"
+        alt="M. Irsyad Affandi"
+      >
+
+      <strong>
+        M. Irsyad Affandi
+      </strong>
+
+      <span>
+        Project Mentor
+      </span>
+
+      <em class="role">
+        Mentor
+      </em>
+
+    </div>
+
+
+
+    <div class="person">
+
+      <img
+        class="photo"
+        src="images/eris.jpg"
+        alt="Eris Rahma Vidiawati"
+      >
+
+      <strong>
+        Eris Rahma Vidiawati
+      </strong>
+
+      <span>
+        Project Team
+      </span>
+
+      <em class="role">
+        Team
+      </em>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 03 — PROBLEM & SOLUTION
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      03 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Why MenuQR?
+  </div>
+
+
+  <h2>
+    From manual ordering<br>
+    to a <span class="accent">digital flow.</span>
+  </h2>
+
+
+  <div class="why">
+
+
+    <div class="box dark">
+
+      <h3>
+        The Problem
+      </h3>
+
+      <p>
+        Proses pemesanan manual dapat membuat pelanggan menunggu,
+        pencatatan kurang efisien, dan restoran membutuhkan
+        pengelolaan order yang lebih terstruktur.
+      </p>
+
+    </div>
+
+
+
+    <div
+      class="box"
+      style="background:#f1f6ff"
+    >
+
+      <h3>
+        The Solution
+      </h3>
+
+      <p>
+        MenuQR menyediakan menu digital berbasis QR.
+        Pelanggan membuka menu dari meja, memilih pesanan,
+        checkout, lalu order masuk ke sistem untuk diproses admin.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 04 — GOALS
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      04 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Goals
+  </div>
+
+
+  <h2>
+    What are we<br>
+    trying to <span class="accent">improve?</span>
+  </h2>
+
+
+  <div class="goals">
+
+
+    <div class="goal">
+
+      <div class="icon">
+        ◎
+      </div>
+
+      <b>
+        Digitalisasi
+      </b>
+
+      <p>
+        Membuat proses pemesanan lebih digital dan terstruktur.
+      </p>
+
+    </div>
+
+
+
+    <div class="goal">
+
+      <div class="icon">
+        ↗
+      </div>
+
+      <b>
+        Efisiensi
+      </b>
+
+      <p>
+        Mempercepat proses dari melihat menu sampai mengirim order.
+      </p>
+
+    </div>
+
+
+
+    <div class="goal">
+
+      <div class="icon">
+        ✓
+      </div>
+
+      <b>
+        Akurasi
+      </b>
+
+      <p>
+        Mengurangi risiko kesalahan pencatatan detail pesanan.
+      </p>
+
+    </div>
+
+
+
+    <div class="goal">
+
+      <div class="icon">
+        ▦
+      </div>
+
+      <b>
+        Multi-Restaurant
+      </b>
+
+      <p>
+        Mendukung banyak restoran dalam satu platform dengan data terpisah.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 05 — CUSTOMER & ADMIN FLOW
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      05 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    System Flow
+  </div>
+
+
+  <h2>
+    From customer order<br>
+    to <span class="accent">admin process.</span>
+  </h2>
+
+
+  <div class="flowbox">
+
+    <div class="label">
+      Customer Process
+    </div>
+
+    <div class="flow">
+
+      <div class="node">
+        Scan QR Code
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Validasi Restoran<br>
+        Meja · Lokasi
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Menu Digital
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Pilih Menu<br>
+        Variant · Addon · Qty
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Checkout
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Create Order
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="flowbox">
+
+    <div class="label">
+      Admin Process
+    </div>
+
+    <div class="flow">
+
+      <div class="node">
+        Receive Order
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Review Order
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Accept / Reject
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Processing
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Update Status
+      </div>
+
+      <i class="arr">→</i>
+
+      <div class="node">
+        Completed
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="flowbox">
+
+    <div class="label">
+      Admin Management
+    </div>
+
+    <div class="admin-modules">
+
+      <div class="node">
+        Dashboard
+      </div>
+
+      <div class="node">
+        Menu
+      </div>
+
+      <div class="node">
+        Kategori
+      </div>
+
+      <div class="node">
+        Meja & QR
+      </div>
+
+      <div class="node">
+        Promo
+      </div>
+
+      <div class="node">
+        Pesanan
+      </div>
+
+      <div class="node">
+        Laporan
+      </div>
+
+      <div class="node">
+        Pengaturan
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 06 — SYSTEM FLOWCHART
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      06 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    System Flowchart
+  </div>
+
+
+  <h2>
+    How the system<br>
+    <span class="accent">
+      works & decides.
+    </span>
+  </h2>
+
+
+
+  <div class="chart">
+
+
+    <!-- CUSTOMER ORDER PROCESS -->
+
+    <div class="chartbox">
+
+      <h3>
+        Customer Order Process
+      </h3>
+
+
+      <div class="vertical">
+
+
+        <div class="vnode">
+          START
+        </div>
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="vnode">
+          Customer Scan QR Code
+        </div>
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="vnode">
+          Validasi Restoran, Meja & Lokasi
+        </div>
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="decision">
+
+          <span>
+            VALID?
+          </span>
+
+        </div>
+
+
+        <div class="branches">
+
+          <div>
+            Tidak<br>
+            → Error / Stop
+          </div>
+
+          <div>
+            Ya<br>
+            → Menu
+          </div>
+
+        </div>
+
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="vnode">
+          Pilih Menu → Variant / Addon / Qty
+        </div>
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="vnode">
+          Checkout → Create Order
+        </div>
+
+        <div class="down">
+          ↓
+        </div>
+
+
+        <div class="vnode">
+          Order Sent → Admin
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ADMIN ORDER PROCESS -->
+
+    <div class="chartbox">
+
+      <h3>
+        Admin Order Process
+      </h3>
+
+
+      <div class="admin-flow">
+
+
+        <div class="admin-node primary">
+          ADMIN DASHBOARD
+        </div>
+
+
+        <div
+          class="down"
+          style="text-align:center"
+        >
+          ↓
+        </div>
+
+
+        <div class="admin-node">
+          Receive New Order
+        </div>
+
+
+        <div
+          class="down"
+          style="text-align:center"
+        >
+          ↓
+        </div>
+
+
+        <div class="admin-node">
+          Review Order
+        </div>
+
+
+        <div
+          class="down"
+          style="text-align:center"
+        >
+          ↓
+        </div>
+
+
+        <div class="admin-node">
+          Accept / Reject
+        </div>
+
+
+        <div class="admin-status">
+
+          <div>
+            Reject<br>
+            → Cancelled
+          </div>
+
+          <div>
+            Accept<br>
+            → Processing
+          </div>
+
+        </div>
+
+
+        <div
+          class="down"
+          style="text-align:center"
+        >
+          ↓
+        </div>
+
+
+        <div class="admin-node">
+          Update Order Status
+        </div>
+
+
+        <div
+          class="down"
+          style="text-align:center"
+        >
+          ↓
+        </div>
+
+
+        <div class="admin-node primary">
+          COMPLETED
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- MULTI RESTAURANT -->
+
+    <div class="chartbox multi-restaurant">
+
+      <h3>
+        Multi-Restaurant System
+      </h3>
+
+
+      <div
+        class="vnode"
+        style="
+          background:var(--navy);
+          color:#fff;
+          border-color:var(--navy);
+          margin:auto;
+          max-width:480px;
+        "
+      >
+        ONE PLATFORM
+      </div>
+
+
+      <div
+        class="down"
+        style="text-align:center;margin:7px"
+      >
+        ↓
+      </div>
+
+
+      <div class="restaurant-row">
+
+
+        <div class="node">
+
+          Restaurant A<br>
+
+          <small>
+            Customer + Admin
+          </small>
+
+        </div>
+
+
+        <div class="node">
+
+          Restaurant B<br>
+
+          <small>
+            Customer + Admin
+          </small>
+
+        </div>
+
+
+        <div class="node">
+
+          Restaurant C<br>
+
+          <small>
+            Customer + Admin
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="isolation">
+
+        <div class="isolation-title">
+          Data Isolation
+        </div>
+
+        <p>
+          Setiap admin terhubung dengan restoran tertentu sehingga
+          data menu, kategori, meja, pesanan, promo, dan pengaturan
+          tetap terpisah antar restoran.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 07 — TECHNOLOGY STACK
+===================================================== -->
+
+<section class="slide">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      07 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Technology Stack
+  </div>
+
+
+  <h2>
+    The tools that<br>
+    build the <span class="accent">system.</span>
+  </h2>
+
+
+  <div class="tech-grid">
+
+
+    <!-- REACT -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/react"
+          alt="React"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Frontend
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            React
+          </span>
+
+          <span class="tag">
+            HTML
+          </span>
+
+          <span class="tag">
+            CSS
+          </span>
+
+          <span class="tag">
+            JavaScript
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- LARAVEL -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/laravel"
+          alt="Laravel"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Backend
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            Laravel
+          </span>
+
+          <span class="tag">
+            PHP
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- MYSQL -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/mysql"
+          alt="MySQL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Database
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            MySQL
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- GIT -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/git"
+          alt="Git"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Version Control
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            Git
+          </span>
+
+          <span class="tag">
+            GitHub
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- VS CODE -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
+          alt="VS Code"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Development
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            VS Code
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- POSTMAN -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/postman"
+          alt="Postman"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          API Testing
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            Postman
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- FIGMA -->
+
+    <div class="tech-card">
+
+      <div class="tech-icon">
+
+        <img
+          src="https://cdn.simpleicons.org/figma"
+          alt="Figma"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Design
+        </h3>
+
+        <div class="tags">
+
+          <span class="tag">
+            Figma
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SLIDE 08 — START DEMO
+===================================================== -->
+
+<section class="slide demo-final">
+
+  <div class="top">
+
+    <div class="brand">
+      Menu Digital QR Restaurant
+    </div>
+
+    <div class="counter">
+      08 / 08
+    </div>
+
+  </div>
+
+
+  <div class="eyebrow">
+    Project Demo
+  </div>
+
+
+  <h2>
+    Ready to see the<br>
+    <span class="accent">
+      system in action?
+    </span>
+  </h2>
+
+
+  <div class="demo-card">
+
+    <div>
+
+      <button
+        class="play"
+        id="demoBtn"
+        aria-label="Start demo"
+      >
+        ▶
+      </button>
+
+
+      <h3>
+        START DEMO
+      </h3>
+
+
+      <p>
+        Menu Digital QR Restaurant
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="controls">
+
+  <div
+    class="dots"
+    id="dots"
+  ></div>
+
+
+  <button id="prev">
+    ←
+  </button>
+
+
+  <button id="next">
+    →
+  </button>
+
+</div>
+
+
+
+<script>
+
+const slides =
+  [...document.querySelectorAll(".slide")];
+
+const dots =
+  document.querySelector("#dots");
+
+let i = 0;
+
+
+/* =====================================================
+   CREATE DOTS
+===================================================== */
+
+slides.forEach((_, n) => {
+
+  const d =
+    document.createElement("span");
+
+  d.className =
+    "dot" + (n === 0 ? " active" : "");
+
+  dots.appendChild(d);
+
+});
+
+
+/* =====================================================
+   SHOW SLIDE
+===================================================== */
+
+function show(n){
+
+  i =
+    (n + slides.length) %
+    slides.length;
+
+
+  slides.forEach((s, k) => {
+
+    s.classList.toggle(
+      "active",
+      k === i
+    );
+
+  });
+
+
+  [...dots.children].forEach((d, k) => {
+
+    d.classList.toggle(
+      "active",
+      k === i
+    );
+
+  });
+
+}
+
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
+document
+  .querySelector("#next")
+  .onclick = () => show(i + 1);
+
+
+/* =====================================================
+   PREVIOUS BUTTON
+===================================================== */
+
+document
+  .querySelector("#prev")
+  .onclick = () => show(i - 1);
+
+
+/* =====================================================
+   START DEMO
+===================================================== */
+
+document
+  .querySelector("#demoBtn")
+  .onclick = () => {
+
+    show(0);
+
+  };
+
+
+/* =====================================================
+   KEYBOARD NAVIGATION
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  e => {
+
+    if(
+      ["ArrowRight"," ","PageDown"]
+      .includes(e.key)
+    ){
+
+      e.preventDefault();
+
+      show(i + 1);
+
+    }
+
+
+    if(
+      ["ArrowLeft","PageUp"]
+      .includes(e.key)
+    ){
+
+      e.preventDefault();
+
+      show(i - 1);
+
+    }
+
+
+    if(e.key === "Home"){
+
+      show(0);
+
+    }
+
+
+    if(e.key === "End"){
+
+      show(slides.length - 1);
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   TOUCH / SWIPE
+===================================================== */
+
+let sx = null;
+
+
+document.addEventListener(
+  "touchstart",
+  e => {
+
+    sx =
+      e.touches[0].clientX;
+
+  },
+  {passive:true}
+);
+
+
+document.addEventListener(
+  "touchend",
+  e => {
+
+    if(sx === null){
+      return;
+    }
+
+
+    const dx =
+      e.changedTouches[0].clientX - sx;
+
+
+    if(Math.abs(dx) > 50){
+
+      show(
+        i + (dx < 0 ? 1 : -1)
+      );
+
+    }
+
+
+    sx = null;
+
+  },
+  {passive:true}
+);
+
+</script>
+
+</body>
+</html>
